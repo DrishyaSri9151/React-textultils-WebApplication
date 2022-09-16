@@ -56,13 +56,14 @@ export default function Textarea(props) {
 
 
 
-  const [text,setText] = useState('Enter Any Text Here');
+  const [text,setText] = useState('');
   return (
     <>
-    <div>
+    <div className="container" style={{color: props.mode ==='dark'?'white':'#042743'}}>
       <h1>{props.heading}</h1>
       <div className="mb-3">
-        <textarea className="form-control"  value={text}  onChange={handleonChange} id="myform" rows="8"></textarea>
+        <textarea className="form-control"  value={text}  onChange={handleonChange} style={{backgroundColor: props.mode ==='dark'
+        ?'#003333':'white', color:props.mode ==='dark'?'white':'black'}}  id="myform" rows="8"></textarea>
       </div>
       <button className="btn btn-primary mx-1" onClick={handleUpcase}>Convert to uppercase</button>
       <button className="btn btn-primary mx-1" onClick={handlelocase}>Convert to lowercase</button>
@@ -71,13 +72,13 @@ export default function Textarea(props) {
       <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
       <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
     </div>
-    <div className="container my-3">
+    <div className="container my-3" style={{color: props.mode ==='dark'?'white':'#042743'}}>
       <h2>Your Text Summary</h2>
       <p>{text.split(" ").length} words and {text.length} characters</p>
       <b>you can read your text in :- </b>
       <p>{0.008 * text.split(" ").length} minutes</p>
       <h2>Your text Preview : </h2>
-      <p>{text}</p>
+      <p>{text.length > 0 ? text : "Enter Something in the above textbox to preview it here." }</p>
     </div>
     </>
   );
