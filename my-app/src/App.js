@@ -3,19 +3,36 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import Textarea from './Components/Textarea';
 import React , {useState} from 'react'
+import Alert from './Components/Alert';
 
 function App() {
 
   const [Mode, setMode] = useState('light'); //whether dark mode is enabeled or not ....
+  const  [alert, setalert] = useState(null);
+
+  const showAlert = (message , type) => {
+         setalert({
+          msg:message,
+          type:type
+         })
+
+         setTimeout(() => {
+          setalert(null);
+         },1500);
+  }
 
   const toggleMode = () => {
     if(Mode === 'light')
     {
         setMode('dark');
         document.body.style.backgroundColor='#042743';
+        showAlert("Dark mode has been enabled","success");
+        document.title = 'TextUtils-DarkMode';
     }else{
       setMode('light');
       document.body.style.backgroundColor='White';
+      showAlert("Light mode has been enabled","sucess");
+      document.title = 'TextUtils-LightMode';
     }
   }
 
@@ -25,8 +42,9 @@ function App() {
     <>
      <div>
       <Navbar title='TextUtils'  about='About-us' mode={Mode} toggleMode={toggleMode} />
+      <Alert   alert={alert}/>
       <div className="container my-3">
-        <Textarea  heading='Enter your Text Below :-' mode={Mode} />
+        <Textarea showAlert={showAlert} heading='Enter your Text Below :-' mode={Mode} />
         {/* <About/> */}
       </div>
      </div>

@@ -10,6 +10,7 @@ export default function Textarea(props) {
       // console.log("uppercase button was clicked");
         let m = text.toUpperCase();
         setText(m);
+        props.showAlert("Changed to Uppercase","success");
     }
 
 
@@ -17,23 +18,27 @@ export default function Textarea(props) {
       //console.log("lowercase button was clicked");
       let g = text.toLowerCase();
       setText(g);
+      props.showAlert("Changed to Lowercase","success");
     }
 
     const handleclcase = () => {
       //console.log("lowercase button was clicked");
       let g = "";
       setText(g);
+      props.showAlert("Text has been cleared","success");
     }
 
     const handleCopy = () => {
       var text = document.getElementById("myform");
       text.select();
       navigator.clipboard.writeText(text.value);
+      props.showAlert("Text Copied to clipboard","success");
     }
 
     const handleExtraSpaces = () => {
       let newtext = text.split(/[  ]+/);
       setText(newtext.join(" "))
+      props.showAlert("Extra Space Removed","success");
     }
 
     //commit
@@ -49,6 +54,7 @@ export default function Textarea(props) {
         m = g.join(" ");
       }
       setText(m);
+      props.showAlert("Text has been capitalized","success");
     }
 
 
